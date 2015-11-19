@@ -907,7 +907,12 @@ class Request
             $headers[] = $this->buildUserAgent();
         }
 
-        $headers[] = "Content-Type: {$this->content_type}";
+        if (stripos($this->content_type, "Content-Type: ") === false){
+            $headers[] = "Content-Type: {$this->content_type}";
+        }
+        else{
+            $headers[] = $this->content_type;
+        }
 
         // allow custom Accept header if set
         if (!isset($this->headers['Accept'])) {
