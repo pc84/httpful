@@ -909,8 +909,7 @@ class Request
 
         if (stripos($this->content_type, "Content-Type: ") === false){
             $headers[] = "Content-Type: {$this->content_type}";
-        }
-        else{
+        } else {
             $headers[] = $this->content_type;
         }
 

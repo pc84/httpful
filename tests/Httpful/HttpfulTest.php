@@ -310,6 +310,15 @@ Content-Type: text/plain; charset=utf-8\r\n", $req);
         $this->assertEquals($response->charset, 'utf-8');
     }
 
+    function testAcceptContentTypeWithNameInside()
+    {
+        $fullContentType = "Content-Type: application/jso";
+        $request = Request::get(self::TEST_URL)->contentType($fullContentType);
+        $request->_curlPrep();
+
+        $this->assertContains($fullContentType, $request->headers);
+    }
+
     function testParsingContentTypeUpload()
     {
         $req = Request::init();
